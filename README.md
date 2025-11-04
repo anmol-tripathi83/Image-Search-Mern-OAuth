@@ -133,44 +133,26 @@ curl -X GET http://localhost:5000/api/history \
 ```
 
 
-## 🗂️ Project Structure
-image-search-mern-oauth/
- ├── client/                <!--  React frontend (Vite) -->
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   │   ├── Login.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── ProtectedRoute.jsx
-│   │   │   ├── TopSearches.jsx
-│   │   │   ├── SearchComponent.jsx
-│   │   │   ├── ImageGrid.jsx
-│   │   │   └── SearchHistory.jsx
-│   │   ├── context/
-│   │   │   └── AuthContext.jsx
-│   │   ├── hooks/
-│   │   │   └── useAuth.js
-│   │   ├── utils/
-│   │   │   └── api.js
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── .env
-│   └── package.json
-├── server/                <!--  Express backend -->
-│   ├── config/
-│   │   └── passportConfig.js
-│   ├── middleware/
-│   │   └── authMiddleware.js
-│   ├── models/
-│   │   ├── User.js
-│   │   └── SearchHistory.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   └── apiRoutes.js
-│   ├── .env
-│   ├── index.js
-│   └── package.json
-└── README.md
+## **Folder Structure**
+#### **Frontend (Client)**
+- **`/client`** - React application built with Vite
+- **`/src/components`** - All React UI components
+- **`/src/context`** - Global state management (authentication)
+- **`/src/hooks`** - Reusable custom React hooks
+- **`/src/utils`** - Helper functions and API utilities
+
+#### **Backend (Server)**
+- **`/server`** - Node.js Express API server
+- **`/config`** - OAuth configuration with Passport.js
+- **`/middleware`** - Custom middleware for authentication
+- **`/models`** - MongoDB database schemas
+- **`/routes`** - API endpoint definitions
+
+#### **Key Files**
+- **`AuthContext.jsx`** - Manages user authentication state
+- **`passportConfig.js`** - Configures OAuth strategies
+- **`apiRoutes.js`** - Contains all protected API endpoints
+- **`.env files`** - Store environment variables and API keys
 
 
 ## 🗃️ Database Models
