@@ -8,13 +8,13 @@ const Login = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      console.log('✅ User already logged in, redirecting to dashboard...');
+      console.log('User already logged in, redirecting to dashboard...');
       window.location.href = '/dashboard';
     }
   }, [user]);
 
   const handleProviderLogin = (provider) => {
-    console.log(`🔄 Initiating ${provider} login...`);
+    console.log(`Initiating ${provider} login...`);
     clearError();
     loginWithProvider(provider);
   };
@@ -25,7 +25,7 @@ const Login = () => {
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-center">
+          <div className="bg-gradient-to-r from-blue-600 to-red-700 p-8 text-center">
             <div className="flex justify-center mb-4">
               <div className="bg-white p-3 rounded-full">
                 <Search className="h-8 w-8 text-blue-600" />
@@ -67,29 +67,6 @@ const Login = () => {
                 <img src="https://github.com/favicon.ico" alt="GitHub" className="w-5 h-5" />
                 Continue with GitHub
               </button>
-            </div>
-
-            {/* Features */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Features:</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center gap-3">
-                  <Search className="h-5 w-5 text-green-500" />
-                  Search millions of high-quality images
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="h-5 w-5 text-blue-500">⭐</div>
-                  Save your favorite searches
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="h-5 w-5 text-purple-500">📊</div>
-                  See popular search trends
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="h-5 w-5 text-orange-500">✅</div>
-                  Multi-select and download images
-                </li>
-              </ul>
             </div>
           </div>
         </div>

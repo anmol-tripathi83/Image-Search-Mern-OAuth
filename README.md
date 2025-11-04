@@ -183,6 +183,23 @@ image-search-mern-oauth/
 }
 
 ## 📸 Screenshots
+### Login Page
 <div align="center">
-  <img src="assets/homepage.png" alt="Home Page" width="600">
+  <img src="public/Login.png" alt="Login Page" width="600">
 </div>
+
+### Home Page
+<div align="center">
+  <img src="public/Dashboard.png" alt="Home Page" width="600">
+</div>
+
+### Image Search Result
+<div align="center">
+  <img src="public/Image_search.png" alt="Image Search Page" width="600">
+</div>
+
+### Mark down Image Result + Top Searches banner Update + Search  History Update  
+<div align="center">
+  <img src="public/Mark_Image.png" alt="Mark down Image Result" width="600">
+</div>
+
