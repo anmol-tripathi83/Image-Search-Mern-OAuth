@@ -47,10 +47,13 @@ cd image-search-mern-oauth
 ```
 
 ### 2. Backend Setup
+```bash
 cd server
 npm install
+```
 
 #### Create server/.env:
+```bash
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/imageSearchApp
@@ -65,10 +68,13 @@ GITHUB_CLIENT_SECRET=your_github_client_secret_here
 
 UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
 CLIENT_URL= http://localhost:5173
+```
 
 ### 3. Frontend Setup
+```bash
 cd ../client
 npm install
+```
 
 #### Create client/.env:
 VITE_API_BASE_URL=http://localhost:5000
@@ -105,20 +111,26 @@ GET /api/history - Get user's search history
 
 ## API Usage Examples
 #### API Usage Examples
+```bash
 curl -X POST http://localhost:5000/api/search \
   -H "Content-Type: application/json" \
   -c cookies.txt -b cookies.txt \
   -d '{"term": "nature"}'
+```
 
 #### Get Top Searches
+```bash
 curl -X GET http://localhost:5000/api/topSearches \
   -H "Content-Type: application/json" \
   -c cookies.txt -b cookies.txt
+```
 
 #### Get Search History
+```bash
 curl -X GET http://localhost:5000/api/history \
   -H "Content-Type: application/json" \
   -c cookies.txt -b cookies.txt
+```
 
 
 ## 🗂️ Project Structure
