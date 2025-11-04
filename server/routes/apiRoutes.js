@@ -3,15 +3,14 @@ const axios = require('axios');
 const requireAuth = require('../middleware/authMiddleware');
 const SearchHistory = require('../models/SearchHistory');
 
-// Apply authentication middleware to all API routes
+// apply authentication middleware to all API routes
 router.use(requireAuth);
 
-// ===== TOP SEARCHES ENDPOINT =====
+// top search route 
 // GET /api/topSearches
 router.get('/topSearches', async (req, res) => {
   try {
-    console.log('📊 Fetching top searches...');
-    
+    console.log('Fetching top searches...');
     const topSearches = await SearchHistory.aggregate([
       {
         $group: {
@@ -31,17 +30,17 @@ router.get('/topSearches', async (req, res) => {
       lastSearched: item.lastSearched
     }));
     
-    console.log('✅ Top searches fetched successfully');
+    console.log('Top searches fetched successfully');
     res.json(formattedSearches);
   } catch (error) {
-    console.error('❌ Top searches error:', error);
+    console.error('Top searches error:', error);
     res.status(500).json({ 
       error: 'Failed to fetch top searches' 
     });
   }
 });
 
-// ===== SEARCH ENDPOINT =====
+// IMAGE SEARCH route 
 // POST /api/search
 router.post('/search', async (req, res) => {
   try {
@@ -54,7 +53,7 @@ router.post('/search', async (req, res) => {
     }
     
     const searchTerm = term.trim().toLowerCase();
-    console.log(`🔍 Search request for: "${searchTerm}" by user: ${req.user.name}`);
+    console.log(`Search request for: "${searchTerm}" by user: ${req.user.name}`);
     
     // Save search history
     const searchHistory = new SearchHistory({
@@ -103,7 +102,7 @@ router.post('/search', async (req, res) => {
       height: image.height
     }));
     
-    console.log(`✅ Search completed: ${images.length} images found for "${searchTerm}"`);
+    console.log(`Search completed: ${images.length} images found for "${searchTerm}"`);
     
     res.json({
       term: searchTerm,
@@ -113,7 +112,7 @@ router.post('/search', async (req, res) => {
     });
     
   } catch (error) {
-    console.error('❌ Search error:', error);
+    console.error('Search error:', error);
     
     if (error.response) {
       // Unsplash API error
@@ -130,11 +129,11 @@ router.post('/search', async (req, res) => {
   }
 });
 
-// ===== SEARCH HISTORY ENDPOINT =====
+// SEARCH HISTORY ENDPOINT
 // GET /api/history
 router.get('/history', async (req, res) => {
   try {
-    console.log(`📚 Fetching search history for user: ${req.user.name}`);
+    console.log(`Fetching search history for user: ${req.user.name}`);
     
     const history = await SearchHistory.find({ 
       userId: req.user._id 
@@ -151,10 +150,10 @@ router.get('/history', async (req, res) => {
       resultCount: item.resultCount
     }));
     
-    console.log(`✅ History fetched: ${formattedHistory.length} search records`);
+    console.log(`History fetched: ${formattedHistory.length} search records`);
     res.json(formattedHistory);
   } catch (error) {
-    console.error('❌ History fetch error:', error);
+    console.error('History fetch error:', error);
     res.status(500).json({ 
       error: 'Failed to fetch search history' 
     });

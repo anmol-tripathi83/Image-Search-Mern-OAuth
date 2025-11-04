@@ -21,14 +21,14 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// ===== GOOGLE STRATEGY =====
+// GOOGLE STRATEGY
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log('🔐 Google OAuth Attempt for:', profile.displayName);
+    console.log('Google OAuth Attempt for:', profile.displayName);
     
     // Check if user already exists with this Google ID
     let user = await User.findOne({ googleId: profile.id });
@@ -58,10 +58,10 @@ passport.use(new GoogleStrategy({
       lastLogin: new Date()
     });
     
-    console.log('✅ New user created via Google OAuth:', user.name);
+    console.log('New user created via Google OAuth:', user.name);
     done(null, user);
   } catch (error) {
-    console.error('❌ Google OAuth Error:', error);
+    console.error('Google OAuth Error:', error);
     done(error, null);
   }
 }));
@@ -74,7 +74,7 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'displayName', 'emails', 'photos']
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log('🔐 Facebook OAuth Attempt for:', profile.displayName);
+    console.log('Facebook OAuth Attempt for:', profile.displayName);
     
     let user = await User.findOne({ facebookId: profile.id });
     
@@ -102,10 +102,10 @@ passport.use(new FacebookStrategy({
       lastLogin: new Date()
     });
     
-    console.log('✅ New user created via Facebook OAuth:', user.name);
+    console.log('New user created via Facebook OAuth:', user.name);
     done(null, user);
   } catch (error) {
-    console.error('❌ Facebook OAuth Error:', error);
+    console.error('Facebook OAuth Error:', error);
     done(error, null);
   }
 }));
@@ -118,7 +118,7 @@ passport.use(new GitHubStrategy({
   scope: ['user:email']
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log('🔐 GitHub OAuth Attempt for:', profile.displayName || profile.username);
+    console.log('GitHub OAuth Attempt for:', profile.displayName || profile.username);
     
     let user = await User.findOne({ githubId: profile.id });
     
@@ -149,10 +149,10 @@ passport.use(new GitHubStrategy({
       lastLogin: new Date()
     });
     
-    console.log('✅ New user created via GitHub OAuth:', user.name);
+    console.log('New user created via GitHub OAuth:', user.name);
     done(null, user);
   } catch (error) {
-    console.error('❌ GitHub OAuth Error:', error);
+    console.error('GitHub OAuth Error:', error);
     done(error, null);
   }
 }));

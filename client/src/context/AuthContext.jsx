@@ -39,13 +39,13 @@ export const AuthProvider = ({ children }) => {
       if (response.data && response.data.id) {
         setUser(response.data);
         setError('');
-        console.log('✅ User authenticated:', response.data.name);
+        console.log('User authenticated:', response.data.name);
       } else {
         setUser(null);
-        console.log('ℹ️ No user session found');
+        console.log('No user session found');
       }
     } catch (error) {
-      console.log('🔐 Not authenticated:', error.response?.data?.error || error.message);
+      console.log('Not authenticated:', error.response?.data?.error || error.message);
       setUser(null);
     } finally {
       setLoading(false);
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   // Login function (redirects to OAuth providers)
   const loginWithProvider = (provider) => {
-    console.log(`🔐 Attempting ${provider} OAuth login...`);
+    console.log(`Attempting ${provider} OAuth login...`);
     clearError();
     window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/${provider}`;
   };
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   // Logout function - FIXED VERSION (without useNavigate)
   const logout = async () => {
     try {
-      console.log('👋 Logging out user...');
+      console.log('Logging out user...');
       await axios.get('/auth/logout');
       
       // Clear user state immediately
@@ -72,9 +72,9 @@ export const AuthProvider = ({ children }) => {
       // Force a hard redirect to login page
       window.location.href = '/login';
       
-      console.log('✅ Logout successful');
+      console.log('Logout successful');
     } catch (error) {
-      console.error('❌ Logout error:', error);
+      console.error('Logout error:', error);
       setError('Logout failed');
       
       // Even if there's an error, clear user and redirect

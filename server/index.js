@@ -5,16 +5,14 @@ const session = require('express-session');
 const cors = require('cors');
 require('dotenv').config();
 
-// Import route files
 const authRoutes = require('./routes/authRoutes');
 const apiRoutes = require('./routes/apiRoutes');
 
-// Import passport configuration
 require('./config/passportConfig');
 
 const app = express();
 
-// ===== MIDDLEWARE SETUP =====
+// MIDDLEWARE SETUP 
 app.use(cors({
   origin: process.env.CLIENT_URL,
   credentials: true
@@ -22,7 +20,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session configuration
+// session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -37,22 +35,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ===== DATABASE CONNECTION =====
+// db connecn 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('✅ MongoDB connected successfully'))
+.then(() => console.log('MongoDB connected successfully'))
 .catch(err => {
-  console.error('❌ MongoDB connection error:', err);
+  console.error('MongoDB connection error:', err);
   process.exit(1);
 });
 
-// ===== ROUTES =====
+// routes
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
-// Health check route
+// For debugging
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -62,7 +60,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Root route
+// root route
 app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to Image Search API',
@@ -75,9 +73,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// ===== ERROR HANDLING =====
-
-// 404 handler - Fixed version
+// error handling
+// handled 404 error
 app.use((req, res) => {
   res.status(404).json({ 
     error: 'Route not found',
@@ -99,25 +96,17 @@ app.use((req, res) => {
   });
 });
 
-// Global error handler
+// global error handler
 app.use((err, req, res, next) => {
-  console.error('❌ Server Error:', err);
+  console.error('Server Error:', err);
   res.status(500).json({ 
     error: 'Internal server error',
     message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong!'
   });
 });
 
-// ===== START SERVER =====
+//server start on part 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log('\n🚀 ========================================');
-  console.log('🚀 Image Search MERN API Server Started');
-  console.log('🚀 ========================================');
-  console.log(`📡 Port: ${PORT}`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-  console.log(`🔗 API URL: http://localhost:${PORT}`);
-  console.log(`👤 Client URL: ${process.env.CLIENT_URL}`);
-  console.log('✅ Server is ready to accept requests');
-  console.log('=========================================\n');
+  console.log(`Server is started on ${PORT}`);
 });

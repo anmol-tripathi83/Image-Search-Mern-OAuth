@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-// ===== GOOGLE AUTHENTICATION =====
+// GOOGLE AUTHENTICATION
 router.get('/google', 
   passport.authenticate('google', { 
     scope: ['profile', 'email'] 
@@ -14,12 +14,12 @@ router.get('/google/callback',
   }),
   (req, res) => {
     // Successful authentication
-    console.log('✅ Google OAuth successful for:', req.user.name);
+    console.log('Google OAuth successful for:', req.user.name);
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
 
-// ===== FACEBOOK AUTHENTICATION =====
+// FACEBOOK AUTHENTICATION 
 router.get('/facebook',
   passport.authenticate('facebook', { 
     scope: ['email', 'public_profile'] 
@@ -31,12 +31,12 @@ router.get('/facebook/callback',
     failureRedirect: `${process.env.CLIENT_URL}/login?error=authFailed` 
   }),
   (req, res) => {
-    console.log('✅ Facebook OAuth successful for:', req.user.name);
+    console.log('Facebook OAuth successful for:', req.user.name);
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
 
-// ===== GITHUB AUTHENTICATION =====
+// GITHUB AUTHENTICATION 
 router.get('/github',
   passport.authenticate('github', { 
     scope: ['user:email'] 
@@ -48,7 +48,7 @@ router.get('/github/callback',
     failureRedirect: `${process.env.CLIENT_URL}/login?error=authFailed` 
   }),
   (req, res) => {
-    console.log('✅ GitHub OAuth successful for:', req.user.name);
+    console.log('GitHub OAuth successful for:', req.user.name);
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
@@ -60,7 +60,7 @@ router.get('/logout', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    console.log('👋 User logged out:', userName);
+    console.log('User logged out:', userName);
     res.redirect(process.env.CLIENT_URL);
   });
 });
