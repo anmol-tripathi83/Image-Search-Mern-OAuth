@@ -182,6 +182,12 @@ image-search-mern-oauth/
   resultCount: Number
 }
 
+
+## Postman Collection
+You can test all API endpoints using the Postman collection below -
+[Download Postman Collection](postman/project_postman_collection.json)
+
+
 ## 📸 Screenshots
 ### Login Page
 <div align="center">
@@ -202,4 +208,5 @@ image-search-mern-oauth/
 <div align="center">
   <img src="public/Mark_Image.png" alt="Mark down Image Result" width="600">
 </div>
+
 

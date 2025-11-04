@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "adec43d6-4236-4980-adbf-c6c9cb897d5b",
+		"name": "Image_search_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37745583",
+		"_collection_link": "https://anmol1-1174.postman.co/workspace/Blockchain~47699bb8-f512-4596-a882-83cb935f506c/collection/37745583-adec43d6-4236-4980-adbf-c6c9cb897d5b?action=share&source=collection_link&creator=37745583"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Current logged user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Search Images",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Top Searches",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Search History",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
